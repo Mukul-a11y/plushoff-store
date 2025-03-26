@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      padding: 20px 0;
+      border-bottom: 2px solid #eee;
+    }
+    .order-details {
+      margin: 20px 0;
+    }
+    .items {
+      margin: 20px 0;
+    }
+    .item {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .total {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: bold;
+    }
+    .shipping-address {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Order Confirmation</h1>
+      <p>Thank you for your order!</p>
+    </div>
+
+    <div class="order-details">
+      <h2>Order #{{order_id}}</h2>
+      <p>Hi {{customer_name}},</p>
+      <p>We're excited to confirm your order. Here are your order details:</p>
+    </div>
+
+    <div class="items">
+      <h3>Items Ordered</h3>
+      {{#each items}}
+      <div class="item">
+        <p>
+          <strong>{{title}}</strong><br>
+          Quantity: {{quantity}}<br>
+          Price: ${{price}}
+        </p>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="total">
+      <p>Total: ${{total}}</p>
+    </div>
+
+    <div class="shipping-address">
+      <h3>Shipping Address</h3>
+      <p>
+        {{shipping_address.address_1}}<br>
+        {{#if shipping_address.address_2}}
+          {{shipping_address.address_2}}<br>
+        {{/if}}
+        {{shipping_address.city}}, {{shipping_address.state}} {{shipping_address.postal_code}}<br>
+        {{shipping_address.country_code}}
+      </p>
+    </div>
+
+    <div class="footer">
+      <p>
+        If you have any questions about your order, please contact our customer service team.<br>
+        Thank you for shopping with Plushoff!
+      </p>
+    </div>
+  </div>
+</body>
+</html> 

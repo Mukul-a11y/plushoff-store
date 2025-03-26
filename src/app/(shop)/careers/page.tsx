@@ -71,9 +71,16 @@ export default function CareersPage() {
           </p>
           
           <p className="text-gray-600">
-            We're always looking for innovative thinkers and problem solvers who
-            share our commitment to excellence. If you're ready to make an impact
-            and grow your career, we'd love to hear from you.
+            We&apos;re always looking for talented individuals who share our passion for innovation and customer satisfaction. If you don&apos;t see a position that matches your skills, feel free to send us your resume for future opportunities.
+          </p>
+          <p className="text-gray-600">
+            We&apos;re committed to creating an inclusive workplace where everyone can thrive.
+          </p>
+          <p className="text-gray-600">
+            We&apos;re proud to be an equal opportunity employer.
+          </p>
+          <p className="text-gray-600">
+            All qualified applicants will receive consideration for employment without regard to race, color, religion, gender, gender identity or expression, sexual orientation, national origin, genetics, disability, age, or veteran status.
           </p>
         </div>
 
@@ -122,40 +129,34 @@ export default function CareersPage() {
             <div>
               <h3 className="text-lg font-semibold mb-2">Innovative Culture</h3>
               <p className="text-gray-600">
-                We foster a culture of innovation and creativity, encouraging our
-                team members to think outside the box and bring new ideas to the
-                table.
+                We&apos;re looking for passionate individuals to join our growing team.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Impact</h3>
               <p className="text-gray-600">
-                Your work will directly impact our customers' shopping experience
-                and help shape the future of e-commerce.
+                We&apos;re committed to fostering a culture of innovation and growth.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Diversity & Inclusion</h3>
               <p className="text-gray-600">
-                We believe in the power of diversity and are committed to creating
-                an inclusive environment where everyone feels valued and respected.
+                We&apos;re always looking for talented people.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Benefits</h3>
               <p className="text-gray-600">
-                We offer comprehensive benefits including health insurance, 401(k)
-                matching, paid time off, and more to support your well-being.
+                We&apos;re excited about the future.
               </p>
             </div>
           </div>
         </div>
 
         <div className="text-center mt-12">
-          <h2 className="text-2xl font-bold mb-4">Don't See the Right Role?</h2>
+          <h2 className="text-2xl font-bold mb-4">Don&apos;t See the Right Role?</h2>
           <p className="text-gray-600 mb-6">
-            We're always looking for talented individuals. Send us your resume and
-            we'll keep you in mind for future opportunities.
+            We&apos;re always looking for talented individuals. Send us your resume and we&apos;ll keep you in mind for future opportunities.
           </p>
           <a
             href="/careers/contact"

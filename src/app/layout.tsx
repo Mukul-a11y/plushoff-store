@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/lib/context/cart";
+import Navbar from "@/components/layout/navbar";
+import { CartProvider } from "@/lib/context/cart-context";
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Plushoff - Your Trusted Shopping Destination",
-  description: "Shop quality products at unbeatable prices",
+  title: "Plushoff - Premium Plush Toys",
+  description: "Shop for premium quality plush toys at Plushoff",
 };
 
 export default function RootLayout({
@@ -17,11 +19,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <CartProvider>
-          <div className="relative flex min-h-screen flex-col">
-            {children}
-          </div>
+          <Navbar />
+          {children}
         </CartProvider>
       </body>
     </html>

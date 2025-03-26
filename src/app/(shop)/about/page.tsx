@@ -117,6 +117,8 @@ export default function AboutPage() {
             Subscribe Now
           </a>
         </div>
+
+        <p className="text-lg text-gray-600 mb-8">We&apos;re passionate about creating beautiful and functional plush toys that bring joy to people&apos;s lives.</p>
       </div>
     </div>
   )

@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { medusaClient } from "@/lib/medusa"
-import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
+import type { 
+  PricedProduct 
+} from "@medusajs/medusa/dist/types/pricing"
 import Image from "next/image"
 import Link from "next/link"
-import { useCart } from "@/lib/context/cart"
-import { formatINR } from "@/lib/utils"
+import { useCart } from "@/lib/context/cart-context"
+import { formatPrice } from "@/lib/utils"
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<PricedProduct[]>([])
@@ -17,7 +19,7 @@ export default function ProductsPage() {
     const fetchProducts = async () => {
       try {
         const { products } = await medusaClient.products.list({ limit: 100 })
-        setProducts(products)
+        setProducts(products as PricedProduct[])
       } catch (error) {
         console.error("Failed to fetch products:", error)
       } finally {
@@ -48,34 +50,48 @@ export default function ProductsPage() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-serif mb-8">All Products</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        {products.map((product) => (
-          <Link 
-            key={product.id} 
-            href={`/products/${product.handle || product.id}`} 
-            className="group"
-          >
-            <div className="space-y-2 md:space-y-4">
-              <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
-                {product.thumbnail && (
-                  <Image
-                    src={product.thumbnail || ""}
-                    alt={product.title || "Product image"}
-                    width={400}
-                    height={400}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                  />
-                )}
+        {products.map((product) => {
+          const firstVariant = product.variants?.[0]
+          const firstPrice = firstVariant?.prices?.[0]?.amount
+          const handle = product.handle || product.id
+          const title = product.title || "Untitled Product"
+          const thumbnail = product.thumbnail || ""
+          const collectionTitle = product.collection?.title
+
+          return (
+            <Link 
+              key={product.id} 
+              href={`/products/${handle}`} 
+              className="group"
+            >
+              <div className="space-y-2 md:space-y-4">
+                <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
+                  {thumbnail && (
+                    <Image
+                      src={thumbnail}
+                      alt={title}
+                      width={400}
+                      height={400}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                      priority={false}
+                    />
+                  )}
+                </div>
+                <div>
+                  {collectionTitle && (
+                    <p className="text-sm md:text-base text-gray-500">{collectionTitle}</p>
+                  )}
+                  <p className="font-medium md:text-lg">{title}</p>
+                  {firstPrice && (
+                    <p className="text-sm md:text-base">
+                      {formatPrice(firstPrice)}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div>
-                <p className="text-sm md:text-base text-gray-500">{product.collection?.title}</p>
-                <p className="font-medium md:text-lg">{product.title}</p>
-                <p className="text-sm md:text-base">
-                  {formatINR(product.variants[0]?.prices[0]?.amount || 0)}
-                </p>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          )
+        })}
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Swiper as SwiperType } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Thumbs } from "swiper/modules"
 import Image from "next/image"
@@ -16,7 +17,7 @@ interface ProductCarouselProps {
 }
 
 export function ProductCarousel({ images }: ProductCarouselProps) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
 
   return (
     <div className="flex flex-col gap-4">
