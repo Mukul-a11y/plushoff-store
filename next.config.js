@@ -5,7 +5,7 @@ const nextConfig = {
   
   // Enable image optimization with more domains and better caching
   images: {
-    domains: ['res.cloudinary.com', 'medusa-public-images.s3.amazonaws.com'],
+    domains: ['res.cloudinary.com', 'medusa-public-images.s3.amazonaws.com', 'images.unsplash.com'],
     minimumCacheTTL: 60 * 60 * 24, // 24 hours
     formats: ['image/avif', 'image/webp'],
   },
@@ -88,4 +88,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
